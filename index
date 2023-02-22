@@ -10,7 +10,7 @@
         margin: 0 auto;
         width: 403px;
         height: 517px;
-        background-image: url('logo.jpg');
+        background-image: url('https://drive.google.com/file/d/1YTe4e0NFWIsGcrr8wBsi5ziskxLiA4jT/view?usp=sharing');
         background-size: cover;
       }
       .slides {
