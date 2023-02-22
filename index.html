@@ -41,50 +41,54 @@
     </div>
   </div>
 <script>
-  function showNotification() {
-    const notification = new Notification("حان وقت تنظيف الأسنان!", {
-      body: "لا تنسَ تنظيف أسنانك.",
-      icon: "toothbrush.png"
-    });
+ window.onload = function() {
+  requestPermission();
+};
 
-    notification.onclick = (event) => {
-      event.preventDefault();
-      window.open("https://www.colgate.com/ar-ae/oral-health/basics/brushing-and-flossing/are-you-brushing-right-0914");
-    };
-  }
+function showNotification() {
+  const notification = new Notification("حان وقت تنظيف الأسنان!", {
+    body: "لا تنسَ تنظيف أسنانك.",
+    icon: "toothbrush.png"
+  });
 
-  function requestPermission() {
-    Notification.requestPermission().then((permission) => {
-      if (permission === "granted") {
-        console.log("الإذن ممنوح");
-        showNotification();
-      }
-    });
-  }
+  notification.onclick = (event) => {
+    event.preventDefault();
+    window.open("https://www.youtube.com/watch?v=DwpXwSnmAPg");
+  };
+}
 
-  setInterval(() => {
-    const currentHour = new Date().getHours();
-    if (currentHour === 7 || currentHour === 18) {
-      requestPermission();
+function requestPermission() {
+  Notification.requestPermission().then((permission) => {
+    if (permission === "granted") {
+      console.log("الإذن ممنوح");
+      showNotification();
     }
-  }, 1000 * 60 * 60); // كل ساعة
+  });
+}
 
-  setTimeout(() => {
-    const confirmation = confirm("هل قمت بتنظيف أسنانك الآن؟");
-    console.log(`تم ${confirmation ? "" : "عدم"} التنظيف`);
-  }, 1000 * 60 * 2); // بعد دقيقتين
-</script>
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(registration => {
-          console.log('Service worker registered');
-        })
-        .catch(error => {
-          console.error('Error registering service worker:', error);
-        });
-    });
+setInterval(() => {
+  const currentHour = new Date().getHours();
+  if (currentHour === 7 || currentHour === 18) {
+    requestPermission();
   }
+}, 1000 * 60 * 60); // كل ساعة
+
+setTimeout(() => {
+  const confirmation = confirm("هل قمت بتنظيف أسنانك الآن؟");
+  console.log(`تم ${confirmation ? "" : "عدم"} التنظيف`);
+}, 1000 * 60 * 2); // بعد دقيقتين
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(registration => {
+        console.log('Service worker registered');
+      })
+      .catch(error => {
+        console.error('Error registering service worker:', error);
+      });
+  });
+}
+
 </script>
   </body>
