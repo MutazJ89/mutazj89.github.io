@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="ar">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      margin: 0;
+      margin: 0
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .main-heading {
       text-align: center;
     }
 
     header {
-      background-color: #f8f8f8;
+      background-color: #2B266C;
       padding: 20px;
+    }
+
+    .logo {
+      display: flex;
+      justify-content: center;
     }
 
     .logo img {
@@ -20,78 +33,84 @@
       margin: 0 auto;
     }
 
+    .slides {
+      max-width: 100vw;
+      overflow: hidden;
+    }
+
+    .slide {
+      width: calc(100% + 2px);
+      position: relative;
+      left: -1px;
+      min-height: 600px;
+      margin-bottom: 30px;
+    }
+
     .content {
+      color: #2B266C;
       max-width: 100%;
       height: auto;
       margin: 0 auto;
-      padding: 20px;
     }
   </style>
   <title>صفحة الصف السادس</title>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+  <script src="https://use.fontawesome.com/629cde4e51.js"></script>
 </head>
+
 <body>
   <header>
     <div class="logo">
-      <img src="https://scontent.ftlv15-1.fna.fbcdn.net/v/t39.30808-6/332767023_1155464085143429_4901307105319179253_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_ohc=m2CFw9JRYeoAX8Qe0FM&_nc_ht=scontent.ftlv15-1.fna&oh=00_AfDsXbRpcihhL9viL5tnAOdllb8GpN_yUNHst0DCaW5uHg&oe=63FACA09" alt="شعار المدرسة">
+      <img
+        src="https://scontent.ftlv15-1.fna.fbcdn.net/v/t39.30808-6/332767023_1155464085143429_4901307105319179253_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_ohc=m2CFw9JRYeoAX8Qe0FM&_nc_ht=scontent.ftlv15-1.fna&oh=00_AfDsXbRpcihhL9viL5tnAOdllb8GpN_yUNHst0DCaW5uHg&oe=63FACA09"
+        alt="شعار المدرسة">
     </div>
   </header>
   <div class="content">
-    <h1>الشرائح التعليمية</h1>
+    <h1 class="main-heading">الشرائح التعليمية</h1>
     <div class="slides">
-      <iframe  src="https://app.nearpod.com/?pin=X8493&he=true" frameborder="0" allowfullscreen=""></iframe>
-      <iframe  src="https://app.nearpod.com/?pin=Z5CW8&he=true" frameborder="0" allowfullscreen=""></iframe>
-      <iframe  src="https://app.nearpod.com/?pin=4JDPG&he=true" frameborder="0" allowfullscreen=""></iframe>
+      <iframe class="slide" src="https://app.nearpod.com/?pin=X8493&he=true" frameborder="0"
+        allowfullscreen=""></iframe>
+      <iframe class="slide" src="https://app.nearpod.com/?pin=Z5CW8&he=true" frameborder="0"
+        allowfullscreen=""></iframe>
+      <iframe class="slide" src="https://app.nearpod.com/?pin=4JDPG&he=true" frameborder="0"
+        allowfullscreen=""></iframe>
     </div>
   </div>
-<script>
- window.onload = function() {
-  requestPermission();
-};
-
-function showNotification() {
-  const notification = new Notification("حان وقت تنظيف الأسنان!", {
-    body: "لا تنسَ تنظيف أسنانك.",
-    icon: "toothbrush.png"
-  });
-
-  notification.onclick = (event) => {
-    event.preventDefault();
-    window.open("https://www.youtube.com/watch?v=DwpXwSnmAPg");
-  };
-}
-
-function requestPermission() {
-  Notification.requestPermission().then((permission) => {
-    if (permission === "granted") {
-      console.log("الإذن ممنوح");
-      showNotification();
-    }
-  });
-}
-
-setInterval(() => {
-  const currentHour = new Date().getHours();
-  if (currentHour === 7 || currentHour === 18) {
-    requestPermission();
+  <script>
+ window.onload = async () => {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js');
+  } else {
+    console.error('Failed to register service worker')
   }
-}, 1000 * 60 * 60); // كل ساعة
 
-setTimeout(() => {
-  const confirmation = confirm("هل قمت بتنظيف أسنانك الآن؟");
-  console.log(`تم ${confirmation ? "" : "عدم"} التنظيف`);
-}, 1000 * 60 * 2); // بعد دقيقتين
+  const permission = await Notification.requestPermission()
+  if (permission !== 'granted') {
+    console.error('Failed to get notification permission')
+  }
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(registration => {
-        console.log('Service worker registered');
-      })
-      .catch(error => {
-        console.error('Error registering service worker:', error);
-      });
-  });
-}
+  // code to reactivate service worker
+  try {
+    navigator.serviceWorker.ready.then(worker => {
+      worker.active.postMessage('go activate')
+    })
+  } catch (e) {
+    console.error(e)
+  }
 
+
+  // setInterval(() => {
+  //   const currentHour = new Date().getHours();
+  //   if (currentHour === 6 || currentHour === 18) {
+  //     requestPermission();
+  //   }
+  // }, 59 * 60 * 1000); // كل ساعة
+
+  setTimeout(() => {
+    const confirmation = confirm("هل قمت بتنظيف أسنانك الآن؟");
+    console.log(`تم ${confirmation ? "" : "عدم"} التنظيف`);
+  }, 999 * 60 * 2); // بعد دقيقتين
+};
 </script>
-  </body>
+</body>
