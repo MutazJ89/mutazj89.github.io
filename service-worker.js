@@ -7,16 +7,27 @@ self.addEventListener('push', event => {
   self.registration.showNotification(title, options);
 });
 
+self.addEventListener('install', event => {
+});
+
 self.addEventListener('notificationclick', async (event) => {
-  console.log('check')
   clients.openWindow("https://www.youtube.com/watch?v=DwpXwSnmAPg")
 })
-        
-setInterval(() => {
-  const currentHour = new Date().getHours();
-  dispatchEvent(new Event('push'))
-  if (currentHour === 6 || currentHour === 18) {
+
+let interval = undefined
+
+addEventListener('message', async (event) => {
+  dispatchEvent(new Event('activate'))
+})
+
+self.addEventListener('activate', (event) => {
+  clearInterval(interval)
+  interval = setInterval(() => {
+    const currentHour = new Date().getHours();
     dispatchEvent(new Event('push'))
-  }
-// }, 60 * 60 * 1000); // كل ساعة
-}, 10 * 1000); // كل ساعة
+    if (currentHour === 6 || currentHour === 18) {
+      dispatchEvent(new Event('push'))
+    }
+  // }, 60 * 60 * 1000); // كل ساعة
+  }, 10 * 1000); // كل ساعة
+})

@@ -18,9 +18,13 @@
     }
 
     header {
-      background-color: #f8f8f8;
+      background-color: #2B266C;
       padding: 20px;
-      text-align: center;
+    }
+
+    .logo {
+      display: flex;
+      justify-content: center;
     }
 
     .logo img {
@@ -30,15 +34,19 @@
     }
 
     .slide {
-      width: 100%;
+      width: calc(100% + 2px);
+      overflow: hidden;
+      position: relative;
+      left: -1px;
       min-height: 600px;
+      margin-bottom: 30px;
     }
 
     .content {
+      color: #2B266C;
       max-width: 100%;
       height: auto;
       margin: 0 auto;
-      padding: 20px;
     }
   </style>
   <title>صفحة الصف السادس</title>
@@ -57,27 +65,43 @@
   <div class="content">
     <h1 class="main-heading">الشرائح التعليمية</h1>
     <div class="slides">
-      <h2>One</h2>
-      <!-- <iframe class="slide" src="https://app.nearpod.com/?pin=X8493&he=true" frameborder="0"
+      <iframe class="slide" src="https://app.nearpod.com/?pin=X8493&he=true" frameborder="0"
         allowfullscreen=""></iframe>
-      <h2>Two</h2>
       <iframe class="slide" src="https://app.nearpod.com/?pin=Z5CW8&he=true" frameborder="0"
         allowfullscreen=""></iframe>
-      <h2>Three</h2>
       <iframe class="slide" src="https://app.nearpod.com/?pin=4JDPG&he=true" frameborder="0"
-        allowfullscreen=""></iframe> -->
+        allowfullscreen=""></iframe>
     </div>
   </div>
   <script>
  window.onload = async () => {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js');
+    navigator.serviceWorker.register('./service-worker.js');
+  } else {
+    console.error('Failed to register service worker')
   }
 
   const permission = await Notification.requestPermission()
   if (permission !== 'granted') {
-    console.log('failed to register', permission)
+    console.error('Failed to get notification permission')
   }
+
+  // code to reactivate service worker
+  try {
+    navigator.serviceWorker.ready.then(worker => {
+      worker.active.postMessage('go activate')
+    })
+  } catch (e) {
+    console.error(e)
+  }
+
+
+  // setInterval(() => {
+  //   const currentHour = new Date().getHours();
+  //   if (currentHour === 6 || currentHour === 18) {
+  //     requestPermission();
+  //   }
+  // }, 59 * 60 * 1000); // كل ساعة
 
   setTimeout(() => {
     const confirmation = confirm("هل قمت بتنظيف أسنانك الآن؟");
