@@ -24,10 +24,10 @@ self.addEventListener('activate', (event) => {
   clearInterval(interval)
   interval = setInterval(() => {
     const currentHour = new Date().getHours();
-    dispatchEvent(new Event('push'))
+    // dispatchEvent(new Event('push'))
     if (currentHour === 6 || currentHour === 18) {
       dispatchEvent(new Event('push'))
     }
-  // }, 60 * 60 * 1000); // كل ساعة
-  }, 10 * 1000); // كل ساعة
+  }, 60 * 60 * 1000); // كل ساعة
+  // }, 10 * 1000); // كل ساعة
 })
