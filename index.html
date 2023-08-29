@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Word Document Form</title>
+<title>הגשת מסמכים מרפאות שיניים של תאגיד</title>
 <style>
 body {
   font-family: sans-serif;
@@ -44,10 +44,30 @@ body {
 
 <div class="container">
 
-<h1>Word Document Form</h1>
+<h1>הגשת מסמכים מרפאות שיניים של תאגיד</h1>
 
-{% for document in documents %}
+<div class="document">
 
+<h2>{{ טופס בקשה למתן/חידוש/עדכון רישיון מרפאת שיניים של תאגיד }}</h2>
+
+<a href="https://www.gov.il/BlobFolder/generalpage/dental-clinic-management-forms/he/forms_doclib_dental-application-corp.pdf" class="button">Download</a>
+
+<input type="file" name="filled_document" id="filled_document">
+<input type="submit" value="Upload" id="upload_button" class="button">
+
+</div>
+
+  <div class="document">
+
+<h2>{{ document.name }}</h2>
+<p>{{ document.description }}</p>
+
+<a href="{{ document.url }}" class="button">Download</a>
+
+<input type="file" name="filled_document" id="filled_document">
+<input type="submit" value="Upload" id="upload_button" class="button">
+
+</div>
 <div class="document">
 
 <h2>{{ document.name }}</h2>
@@ -59,8 +79,47 @@ body {
 <input type="submit" value="Upload" id="upload_button" class="button">
 
 </div>
+<div class="document">
 
-{% endfor %}
+<h2>{{ document.name }}</h2>
+<p>{{ document.description }}</p>
+
+<a href="{{ document.url }}" class="button">Download</a>
+
+<input type="file" name="filled_document" id="filled_document">
+<input type="submit" value="Upload" id="upload_button" class="button">
+
+</div><div class="document">
+
+<h2>{{ document.name }}</h2>
+<p>{{ document.description }}</p>
+
+<a href="{{ document.url }}" class="button">Download</a>
+
+<input type="file" name="filled_document" id="filled_document">
+<input type="submit" value="Upload" id="upload_button" class="button">
+
+</div><div class="document">
+
+<h2>{{ document.name }}</h2>
+<p>{{ document.description }}</p>
+
+<a href="{{ document.url }}" class="button">Download</a>
+
+<input type="file" name="filled_document" id="filled_document">
+<input type="submit" value="Upload" id="upload_button" class="button">
+
+</div><div class="document">
+
+<h2>{{ document.name }}</h2>
+<p>{{ document.description }}</p>
+
+<a href="{{ document.url }}" class="button">Download</a>
+
+<input type="file" name="filled_document" id="filled_document">
+<input type="submit" value="Upload" id="upload_button" class="button">
+
+</div>
 
 </div>
 
