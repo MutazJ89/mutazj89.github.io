@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Word Document Form</title>
+</head>
+<body>
+
+<h1>Word Document Form</h1>
+
+<div id="documents">
+
+<!-- This loop will iterate through the list of documents -->
+{% for document in documents %}
+
+<div class="document">
+
+<h2>{{ document.name }}</h2>
+<p>{{ document.description }}</p>
+
+<!-- This button will download the document -->
+<a href="{{ document.url }}" class="button">Download</a>
+
+<!-- This button will upload the filled document -->
+<input type="file" name="filled_document" id="filled_document">
+<input type="submit" value="Upload" id="upload_button">
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<script>
+// This code will handle the file upload event
+$("#upload_button").click(function() {
+var filled_document = $("#filled_document").prop("files")[0];
+var formData = new FormData();
+formData.append("filled_document", filled_document);
+
+// Send the file to the server
+$.ajax({
+url: "/upload",
+type: "POST",
+data: formData,
+contentType: false,
+processData: false,
+success: function(data) {
+alert("File uploaded successfully!");
+},
+error: function(error) {
+alert("An error occurred: " + error.message);
+}
+});
+});
+</script>
+
+</body>
+</html>
