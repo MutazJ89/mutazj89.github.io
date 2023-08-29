@@ -2,14 +2,50 @@
 <html>
 <head>
 <title>Word Document Form</title>
+<style>
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.document {
+  margin-bottom: 1rem;
+}
+
+.document h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.document p {
+  font-size: 1rem;
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0062c9;
+}
+</style>
 </head>
 <body>
 
+<div class="container">
+
 <h1>Word Document Form</h1>
 
-<div id="documents">
-
-<!-- This loop will iterate through the list of documents -->
 {% for document in documents %}
 
 <div class="document">
@@ -17,42 +53,16 @@
 <h2>{{ document.name }}</h2>
 <p>{{ document.description }}</p>
 
-<!-- This button will download the document -->
 <a href="{{ document.url }}" class="button">Download</a>
 
-<!-- This button will upload the filled document -->
 <input type="file" name="filled_document" id="filled_document">
-<input type="submit" value="Upload" id="upload_button">
+<input type="submit" value="Upload" id="upload_button" class="button">
 
 </div>
 
 {% endfor %}
 
 </div>
-
-<script>
-// This code will handle the file upload event
-$("#upload_button").click(function() {
-var filled_document = $("#filled_document").prop("files")[0];
-var formData = new FormData();
-formData.append("filled_document", filled_document);
-
-// Send the file to the server
-$.ajax({
-url: "/upload",
-type: "POST",
-data: formData,
-contentType: false,
-processData: false,
-success: function(data) {
-alert("File uploaded successfully!");
-},
-error: function(error) {
-alert("An error occurred: " + error.message);
-}
-});
-});
-</script>
 
 </body>
 </html>
