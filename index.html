@@ -1,83 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="he">
 <head>
-<title>הגשת מסמכים מרפאות שיניים של תאגיד</title>
-<style>
-body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  width: 100%;
-  margin: 0 auto;
-  margin-bottom: 1rem;
-}
-
-.document {
-  margin-bottom: 1rem;
-}
-
-.document h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.document p {
-  font-size: 1rem;
-}
-
-.button {
-  background-color: #007bff;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-}
-
-.button:hover {
-  background-color: #0062c9;
-}
-
-#upload-form {
-  text-align: center;
-  display: flex;
-  justify-content: flex-start;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-h1 {
-  text-align: center;
-}
-
-.container {
-  text-align: center;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>הגשת מסמכים מרפאות שיניים של תאגיד</title>
 </head>
 <body>
 
-<div class="container">
+<header class="header">
+  <h1 class="title">הגשת מסמכים מרפאות שיניים של תאגיד</h1>
+</header>
 
-<h1>הגשת מסמכים מרפאות שיניים של תאגיד</h1>
-
-<div class="document">
-
-<h2> טופס בקשה למתן/חידוש/עדכון רישיון מרפאת שיניים של תאגיד </h2>
-
-<a href="https://drive.google.com/file/d/1TGk3dPaNS-AFAZdgvvGZsY066E9cZswJ/view?usp=drive_link" class="button">Download</a>
-
-<div id="upload-form">
-  <input type="file" name="filled_document" id="filled_document">
-  <input type="submit" value="Upload" id="upload_button">
-  <input type="button" value="Browse" id="browse_button" class="button">
-</div>
-
-</div>
-
-</div>
+<main class="container">
+  <article class="document">
+    <h2 class="document-title">טופס בקשה למתן/חידוש/עדכון רישיון מרפאת שיניים של תאגיד</h2>
+    <a href="https://drive.google.com/file/d/1TGk3dPaNS-AFAZdgvvGZsY066E9cZswJ/view?usp=drive_link" class="button">Download</a>
+    <div class="upload-form">
+      <input type="file" name="filled_document" id="filled_document">
+      <input type="submit" value="Upload" id="upload_button">
+      <input type="button" value="Browse" id="browse_button" class="button">
+    </div>
+  </article>
+</main>
 
 </body>
 </html>
