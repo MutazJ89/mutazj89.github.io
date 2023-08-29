@@ -1,0 +1,49 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 1.5rem;
+}
+
+.container {
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.document-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.document p {
+  font-size: 1rem;
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0062c9;
+}
+
+.upload-form {
+  text-align: center;
+  display: flex;
+  justify-content: flex-start;
+  max-width: 400px;
+  margin: 0 auto;
+}
