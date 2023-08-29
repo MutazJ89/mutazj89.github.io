@@ -38,6 +38,11 @@ body {
 .button:hover {
   background-color: #0062c9;
 }
+
+#upload-form {
+  text-align: center;
+  margin: 0 auto;
+}
 </style>
 </head>
 <body>
@@ -52,23 +57,10 @@ body {
 
 <a href="https://drive.google.com/file/d/1TGk3dPaNS-AFAZdgvvGZsY066E9cZswJ/view?usp=drive_link" class="button">Download</a>
 
-<input type="file" name="filled_document" id="filled_document">
-<input type="submit" value="Upload" id="upload_button" class="button">
-
-<style>
-.button {
-  background-color: #007bff;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  border: 2px solid #0062c9;
-}
-
-.button:hover {
-  background-color: #0062c9;
-}
-</style>
+<div id="upload-form">
+  <input type="file" name="filled_document" id="filled_document">
+  <input type="submit" value="Upload" id="upload_button">
+</div>
 
 </div>
 
