@@ -58,16 +58,19 @@ body {
 .button:hover {
   background-color: #0056b3;
 }
-
 .upload-form {
   margin-top: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
 }
+
+.upload-form input[type="file"],
 .upload-form input[type="submit"] {
-  margin-left: 1rem;
+  margin: 0.5rem; /* Add some margin between the buttons */
 }
+
 
 .file-input + label {
   background-color: #007bff;
